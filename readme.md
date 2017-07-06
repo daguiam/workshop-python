@@ -57,6 +57,6 @@ We want to start out with
 
 * Diogo Aguiam (<diogoaguiam@gmail.com>], [@diogoaguiam](https://twitter.com/diogoaguiam)
 
-* Luis Guimarais (<guimas@ipfn.tecnico.ulisboa.pt>)
+Luis Guimarais (<guimas@ipfn.tecnico.ulisboa.pt>)
 
 

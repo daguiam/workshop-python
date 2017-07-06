@@ -49,7 +49,7 @@ Please check out: http://continuum.io/thanks and https://anaconda.org
 ```
 
 
-Python Syntax
+## Python Syntax
 
 ```
 >>> 1+3
@@ -92,7 +92,8 @@ Python can handle automatically the data formats: int, floats, complex, hex
 1.2
 >>> 0x30
 48
-
+>>> 1.2783468723e23
+1.2783468723e+23
 >>> 
 ```
 
@@ -126,18 +127,240 @@ Mathematical operators: + - * / % **
 
 
 
-Typical elements of python
+## Typical elements of python
+
+### Strings
+```
+>>> a = 'Hello World'
+>>> print a
+Hello World
+>>> a[0]
+'H'
+>>> a[10]
+'d'
+>>> a[11]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+>>> a[-1]
+'d'
+>>> len(a)
+11
+>>> a[0:3]
+'Hel'
+>>> a[:3]
+'Hel'
+>>> a[3:]
+'lo World'
+>>> a[:]
+'Hello World'
+>>> a[:-1]
+'Hello Worl'
+>>> a[:-2]
+'Hello Wor'
+>>> a[:-3]
+'Hello Wo'
+>>> a[-3]
+'r'
+>>> a[-3:]
+'rld'
+>>> 
+```
+
+Concatenating strings together
+```
+>>> b = '!!!'
+>>> print a + b
+Hello World!!!
+>>> print a,b
+Hello World !!!
+>>> 
+```
+
+Handling strings with numbers
+```
+>>> c = a + 22
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot concatenate 'str' and 'int' objects
+>>> c = a + str(22)
+>>> c
+'Hello World22'
+>>> 
+```
+
+Formatting strings with additional variable info
+
+```
+>>> name = 'Dexter'
+>>> age = 15
+>>> print 'My name is %s and my age is %d'%(name,age)
+My name is Dexter and my age is 15
+>>> 
+```
+
+```
+>>> pi = 3.1415927
+>>> print 'Pi is %f'%(pi)
+Pi is 3.141593
+>>> print 'Pi is %0.2f'%(pi)
+Pi is 3.14
+>>> 
+```
+
+
+
+
 
 ### Lists
 
+Lists are limited by the square brackets `[`,`]` brackets and are not limited by a single data type.
+
+```
+>>> [1, 2, 3]
+[1, 2, 3]
+>>> [1, 'a', 2.0]
+[1, 'a', 2.0]
+>>> 
+```
+
+The indexing of lists is the same as for strings
+
+```
+>>> a = [0, 1, 2, 'a','string',3.14]
+>>> a[:3]
+[0, 1, 2]
+>>> a[:-2]
+[0, 1, 2, 'a']
+>>> 
+```
+#### Methods related to lists:
+
+Adding or removing elements to a list
+```
+>>> a = [0, 1, 2, 'a','string',3.14]
+>>> a
+[0, 1, 2, 'a', 'string', 3.14]
+>>> a.append('Added to last')
+>>> a
+[0, 1, 2, 'a', 'string', 3.14, 'Added to last']
+>>> a.pop()
+'Added to last'
+>>> a
+[0, 1, 2, 'a', 'string', 3.14]
+>>> a.insert(0,'New first element')
+>>> a
+['New first element', 0, 1, 2, 'a', 'string', 3.14]
+>>> 
+```
+
+Sorting lists
+```
+>>> a
+['New first element', 0, 1, 2, 'a', 'string', 3.14]
+>>> a.sort()
+>>> a
+[0, 1, 2, 3.14, 'New first element', 'a', 'string']
+>>> a.reverse()
+>>> a
+['string', 'a', 'New first element', 3.14, 2, 1, 0]
+>>> 
+```
+
+Sorting lists with methods changes the underlying list.
+Better to use sorted to provide a sorted copy of the list:
+```
+>>> mylist = [4,2,1,2.3,10]
+>>> mylist.sort()
+>>> mylist
+[1, 2, 2.3, 4, 10]
+>>> mylist = [4,2,1,2.3,10]
+>>> sorted(mylist)
+[1, 2, 2.3, 4, 10]
+>>> mylist
+[4, 2, 1, 2.3, 10]
+>>> sorted(mylist, reverse=True)
+[10, 4, 2.3, 2, 1]
+>>> 
+```
+
+Extra: Custom sorting
+```
+>>> a = ['222','aaaaa','2']
+>>> a
+['222', 'aaaaa', '2']
+>>> sorted(a,key=len)
+['2', '222', 'aaaaa']
+>>> 
+```
+
+#### Create a list integer sequence
+
+Usage: `range(start, [stop, [step]])`
+
+```
+>>> a = range(10)
+>>> a
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> a = range(2,10)
+>>> a
+[2, 3, 4, 5, 6, 7, 8, 9]
+>>> a = range(2,10,3)
+>>> a
+[2, 5, 8]
+>>>
+>>> a = range(2,10,0.5)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: range() integer step argument expected, got float.
+>>>
+```
+For floats we have to use another library (numpy.linspace)
 
 
 
+### Dictionaries
 
 
+Dictionaries are similar to lists but are indexed by keys, instead of integer indexes.
+
+Usage: `mydictiony = {'key_name': values}`
+
+Very efficient way to create a database and access its elements. Useful for configuration files, etc
+
+```
+>>> user = {}
+>>> user
+{}
+>>> user['name'] = 'Dexter'
+>>> user['age'] = 15
+>>> user
+{'age': 15, 'name': 'Dexter'}
+>>> user['mylist'] = ['element1',2222,'string']
+>>> user
+{'age': 15, 'mylist': ['element1', 2222, 'string'], 'name': 'Dexter'}
+>>> user['age']
+15
+>>> user['name']
+'Dexter'
+>>> user['name'] = 'Deedee'
+>>> user['name']
+'Deedee'
+>>> 
+```
+
+#### Methods to handle dictionaries
+
+```
+>>> user.keys()
+['age', 'mylist', 'name']
+>>> user.values()
+[15, ['element1', 2222, 'string'], 'Deedee']
+>>>
+```
 
 
-#### Conditions
+## Conditions
 
 Let's do some conditions now
 
@@ -173,6 +396,7 @@ True
 
 ```
 
+### `if` control
 
 ```
 if <condition 1> :
