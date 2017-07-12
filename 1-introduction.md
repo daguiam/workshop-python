@@ -2,7 +2,12 @@
 
  Python is a quick and light interpreted scripting language that you can use to quickly prototype a tool or a project.
 
-You can use it for everything from simple automation scripts to even full applications, neusral networks, scientific computing, plots, graphical user interfaces, etc ...
+You can use it for everything from simple automation scripts to even full applications, neural networks, scientific computing, plots, graphical user interfaces, web back-ends, etc ...
+
+
+From [tutorialspoint](https://www.tutorialspoint.com/python/index.htm):
+> Python is a general-purpose interpreted, interactive, object-oriented, and high-level programming language. It was created by Guido van Rossum during 1985- 1990. Like Perl, Python source code is also available under the GNU General Public License (GPL). This tutorial gives enough understanding on Python programming language.
+
 
 
 ## Installing Python
@@ -36,7 +41,7 @@ Other useful platforms can be used around Python:
 
 ---
 
-# Using python
+# Programming in python
 
 
 Opening up the python interpreter 
