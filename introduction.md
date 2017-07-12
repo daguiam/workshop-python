@@ -189,6 +189,11 @@ TypeError: cannot concatenate 'str' and 'int' objects
 >>> 
 ```
 
+> ***Note:*** The python interpreter executes each command or script line consecutively and raises an `Error` as soon as one is executed.
+This enables a quick and descriptive debugging of the script.
+
+
+
 Formatting strings with additional variable info
 
 ```
@@ -207,9 +212,6 @@ Pi is 3.141593
 Pi is 3.14
 >>> 
 ```
-
-
-
 
 
 ### Lists
@@ -441,7 +443,7 @@ user George is not in the name list!
 >>> 
 ```
 
-> ***Note:*** Best practices in python is using 4 spaces instead of a tab character.
+> ***Note:*** Best practice in python uses 4 spaces instead of a tab character.
  A single tab character may not be equal to the same amount of space characters in different IDEs.
  If the separation indentation uses both tabs and spaces, the interpreter may raise an identation error.
  Some IDEs already convert tabs to 4 spaces. You should configure your IDE to do the same when programming in python.
@@ -508,7 +510,157 @@ Loop finished!
 >>> 
 ```
 
-## Functions in python
+## Nested code blocks or loop sequences
+
+Nesting a control sequence or code block inside an existing code block is as simple as adding another identation for the second code block.
+
+```
+>>> for i in range(3):
+...     for j in range(2):
+...         print 'Numbers: %d-%d'%(i,j)
+... 
+Numbers: 0-0
+Numbers: 0-1
+Numbers: 1-0
+Numbers: 1-1
+Numbers: 2-0
+Numbers: 2-1
+>>> 
+```
+
+
+## Defining functions
+
+Functions are essential part of any programming.
+Functions are reproducible and act on the passed arguments.
+
+In python functions are defined as blocks of code whose syntax is
+
+```
+def function_name(<argument1>, <argument2>):
+    <instructions>
+    return
+```
+
+An example function is
+
+```
+>>> def print_text(text="Hello World"):
+...     print text
+...     return 
+... 
+>>> print_text()
+Hello World
+>>> print_text("this is another text")
+this is another text
+>>> print_text(text="this is yet another text")
+this is yet another text
+>>> 
+```
+
+A particular feature of python is that you can set the default value for the argument directly when defining the arguments.
+If the argument is not defined when executing the function, then the default value is used.
+
+
+Multiple arguments may defined in a single function in the same line or in multiple lines
+
+
+```
+>>> def print_text( text1="Hello",
+...                 text2="World"):
+...     print text1,text2
+...     return
+... 
+>>> print_text()
+Hello World
+>>> print_text("Hey")
+Hey World
+>>> print_text("Hey","Earth")
+Hey Earth
+>>> print_text(text2="Earth",text1="What's up")
+What's up Earth
+>>> print_text("Earth",text1="What's up")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: print_text() got multiple values for keyword argument 'text1'
+>>> 
+```
+> ***Note:*** Good python programming style practices allow arguments to be defined in the same line when total line length is not exagerated (<80 characters).
+Also, keep default value assignments together with no space, while separating arguments by a comma + space. 
+
+```
+def function(arg1=1, arg2=2.0):
+    return
+```
+
+
+
+
+
+
+---
+
+
+# Creating python scripts
+
+Python is rarely meant to be programmed directly in the interpreter.
+Python code stored in python scripts ending with `.py` which are then executed by calling the interpreter with the script name passed as argument.
+
+```
+python script.py
+```
+
+`script.py` is simply:
+
+```
+print 'This code was executed from a python script'
+```
+
+
+```
+$ python script.py 
+This code was executed from a python script
+$ 
+```
+
+
+### Executable python scripts
+
+[Check here](http://pythoncentral.io/execute-python-script-file-shell/) on how to run the python script without having to call the python interpreter through the command line.
+
+
+#### Under Mac, Linux, BSD, Unix:
+
+First line of the python script must include the path to the interpreter
+
+`script.py`:
+```
+#!/usr/bin/env python
+
+print 'This code was executed from a python script'
+```
+
+And the script file permissions must be set to executable
+
+```
+$ chmod +x script.py
+$ ./script.py 
+This code was executed from a python script
+$
+```
+
+
+#### Under Windows
+
+Must call the python interpreter directly.
+
+```
+$ C:\Python27\python.exe C:\Users\Username\Desktop\script.py
+```
+
+
+
+
 
 ---
 
