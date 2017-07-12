@@ -31,9 +31,9 @@ Other useful platforms can be used around Python:
     > Spyder is an interactive Python development environment providing MATLAB-like features in a simple and light-weighted software.
 
 
+---
 
-
-# Basic python syntax
+# Using python
 
 
 Opening up the python interpreter 
@@ -97,7 +97,7 @@ Python can handle automatically the data formats: int, floats, complex, hex
 >>> 
 ```
 
-Mathematical operators: + - * / % **
+Mathematical operators: `+ - * / % **`
 
 ```
 >>> 1+2
@@ -396,6 +396,11 @@ True
 
 ```
 
+
+> ***Note:*** Code blocks are are distinguished by their identations, instead of the more common curly brackets `{}` in other programming languages.
+
+
+
 ### `if` control
 
 ```
@@ -436,9 +441,24 @@ user George is not in the name list!
 >>> 
 ```
 
+> ***Note:*** Best practices in python is using 4 spaces instead of a tab character.
+ A single tab character may not be equal to the same amount of space characters in different IDEs.
+ If the separation indentation uses both tabs and spaces, the interpreter may raise an identation error.
+ Some IDEs already convert tabs to 4 spaces. You should configure your IDE to do the same when programming in python.
+
+```
+>>> if True:
+...     2
+...     3
+  File "<stdin>", line 3
+    3
+    ^
+IndentationError: unindent does not match any outer indentation level
+>>> 
+ ```
 
 
-#### Loop sequences
+### Loop sequences
 
 
 ```
@@ -488,6 +508,11 @@ Loop finished!
 >>> 
 ```
 
+## Functions in python
+
+---
+
+# Creating python scripts
 
 
 
