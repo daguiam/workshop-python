@@ -127,25 +127,45 @@ Mathematical operators: `+ - * / % **`
 
 
 
-## Typical elements of python
+## Data types
+
+These are the default data types in the base module of python.
+
 
 ### Strings
+
+Strings are a sequence of characters, like other programming languages, and can be indexed similarly.
+
 ```
 >>> a = 'Hello World'
 >>> print a
 Hello World
+```
+
+Indexing strings
+
+```
 >>> a[0]
 'H'
 >>> a[10]
 'd'
->>> a[11]
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-IndexError: string index out of range
 >>> a[-1]
 'd'
 >>> len(a)
 11
+>>> a[11]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+```
+
+> ***Note:*** The python interpreter executes each command or script line consecutively and raises an `Error` as soon as one is executed.
+This enables a quick and descriptive debugging of the script.
+
+
+Additionaly, a subset of strings, arrays and lists in python can be indexed with a sequential range.
+
+```
 >>> a[0:3]
 'Hel'
 >>> a[:3]
@@ -166,6 +186,8 @@ IndexError: string index out of range
 'rld'
 >>> 
 ```
+
+
 
 Concatenating strings together
 ```
@@ -189,12 +211,9 @@ TypeError: cannot concatenate 'str' and 'int' objects
 >>> 
 ```
 
-> ***Note:*** The python interpreter executes each command or script line consecutively and raises an `Error` as soon as one is executed.
-This enables a quick and descriptive debugging of the script.
 
 
-
-Formatting strings with additional variable info
+Strings can be formatted with variable info, similarly to other langauges.
 
 ```
 >>> name = 'Dexter'
@@ -317,6 +336,10 @@ Traceback (most recent call last):
 TypeError: range() integer step argument expected, got float.
 >>>
 ```
+
+> ***Note:*** The `range` generator is useful for loop sequences or generate integer arrays. 
+However, for real data processing it is better to use a more robust library such as `NumPy`, which is explained later.
+
 For floats we have to use another library (numpy.linspace)
 
 
@@ -325,6 +348,7 @@ For floats we have to use another library (numpy.linspace)
 
 
 Dictionaries are similar to lists but are indexed by keys, instead of integer indexes.
+Data stored in dictionaries is hashed, resulting in a much quicker lookup than using lists.
 
 Usage: `mydictiony = {'key_name': values}`
 
