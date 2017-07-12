@@ -46,7 +46,7 @@ Email:
 
 We aim to have a series of programming workshops related to Python, open source and collaborative programming, at IPFN for anyone willing to attend.
 
-We want to start out with 
+
 
 
 
@@ -60,3 +60,4 @@ We want to start out with
 Luis Guimarais (<guimas@ipfn.tecnico.ulisboa.pt>)
 
 
+Licensed under: [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0)

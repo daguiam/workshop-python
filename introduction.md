@@ -232,6 +232,8 @@ Pi is 3.14
 >>> 
 ```
 
+Strings can also be ma
+
 
 ### Lists
 
@@ -562,6 +564,11 @@ In python functions are defined as blocks of code whose syntax is
 
 ```
 def function_name(<argument1>, <argument2>):
+    """ Optional but recomended description of the function
+    including input arguments
+    and outputs
+    """
+
     <instructions>
     return
 ```
@@ -681,14 +688,6 @@ Must call the python interpreter directly.
 ```
 $ C:\Python27\python.exe C:\Users\Username\Desktop\script.py
 ```
-
-
-
-
-
----
-
-# Creating python scripts
 
 
 
