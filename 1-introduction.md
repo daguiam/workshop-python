@@ -1,12 +1,15 @@
-# Introduction to Python
+# What is Python?
 
  Python is a quick and light interpreted scripting language that you can use to quickly prototype a tool or a project.
 
 You can use it for everything from simple automation scripts to even full applications, neusral networks, scientific computing, plots, graphical user interfaces, etc ...
 
 
-## Installation
-First you should install the correct python tols for your operating system.
+## Installing Python
+
+
+First you should install the correct python package for your operating system.
+Check [Installation](0-installation.md)
 
 For this tutorial we use
 
@@ -71,8 +74,9 @@ Hello world
 ... like this """
 ' It can be multiline \nlike this '
 >>> 
-
 ```
+> ***Question:*** How can you define a multi line string variable?
+
 
 
 Python can handle automatically the data formats: int, floats, complex, hex
@@ -127,6 +131,7 @@ Mathematical operators: `+ - * / % **`
 
 
 
+
 ## Data types
 
 These are the default data types in the base module of python.
@@ -158,6 +163,9 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 IndexError: string index out of range
 ```
+> ***Question:*** What is the value of `a[11]`?
+
+
 
 > ***Note:*** The python interpreter executes each command or script line consecutively and raises an `Error` as soon as one is executed.
 This enables a quick and descriptive debugging of the script.
@@ -187,6 +195,9 @@ Additionaly, a subset of strings, arrays and lists in python can be indexed with
 >>> 
 ```
 
+> ***Question:*** What is the value of `a[:]`?
+
+
 
 
 Concatenating strings together
@@ -198,6 +209,9 @@ Hello World!!!
 Hello World !!!
 >>> 
 ```
+
+> ***Question:*** How can you assign a new variable `new` that joins strings `a` and `b`?
+
 
 Handling strings with numbers
 ```
@@ -211,7 +225,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 >>> 
 ```
 
-
+> ***Question:*** What if you want to join string and number variables?
 
 Strings can be formatted with variable info, similarly to other langauges.
 
@@ -232,7 +246,7 @@ Pi is 3.14
 >>> 
 ```
 
-Strings can also be ma
+
 
 
 ### Lists
@@ -247,6 +261,7 @@ Lists are limited by the square brackets `[`,`]` brackets and are not limited by
 >>> 
 ```
 
+
 The indexing of lists is the same as for strings
 
 ```
@@ -257,6 +272,9 @@ The indexing of lists is the same as for strings
 [0, 1, 2, 'a']
 >>> 
 ```
+> ***Question:*** What is the value of `a[3]`?
+
+
 #### Methods related to lists:
 
 Adding or removing elements to a list
@@ -338,6 +356,8 @@ Traceback (most recent call last):
 TypeError: range() integer step argument expected, got float.
 >>>
 ```
+> ***Question:*** Why is there no `9` or  in the result of `range(2,10,3)`?
+
 
 > ***Note:*** The `range` generator is useful for loop sequences or generate integer arrays. 
 However, for real data processing it is better to use a more robust library such as `NumPy`, which is explained later.
@@ -364,6 +384,11 @@ Very efficient way to create a database and access its elements. Useful for conf
 >>> user['age'] = 15
 >>> user
 {'age': 15, 'name': 'Dexter'}
+```
+
+> ***Question:*** How can we create command to print `The user Dexter is 15 years old` ?
+
+```
 >>> user['mylist'] = ['element1',2222,'string']
 >>> user
 {'age': 15, 'mylist': ['element1', 2222, 'string'], 'name': 'Dexter'}
@@ -377,6 +402,11 @@ Very efficient way to create a database and access its elements. Useful for conf
 >>> 
 ```
 
+> ***Question:*** What would be __current__ the output if we executed the command of the previous question?
+
+
+
+
 #### Methods to handle dictionaries
 
 ```
@@ -388,7 +418,7 @@ Very efficient way to create a database and access its elements. Useful for conf
 ```
 
 
-## Conditions
+## Control flow conditions
 
 Let's do some conditions now
 
@@ -421,12 +451,18 @@ True
 True
 >>> a == 1 and b != 1
 True
-
 ```
 
 
-> ***Note:*** Code blocks are are distinguished by their identations, instead of the more common curly brackets `{}` in other programming languages.
+> ***Question:*** What is the output of `'abc' <> 'Abc'`?
 
+> ***Question:*** What is the output of `2 in [1,2,3,4]`?
+
+> ***Question:*** What about `2.0 in [1,2,3,4]`?
+
+> ***Question:*** And `'2' in [1,2,3,4]`?
+
+> ***Question:*** And `'a' in 'abcd`?
 
 
 ### `if` control
@@ -441,6 +477,10 @@ elif <condition 2> :
 else :
     <default instruction>
 ```
+
+> ***Note:*** Code blocks are are distinguished by their identations, instead of the more common curly brackets `{}` in other programming languages.
+
+
 
 Example
 
@@ -486,16 +526,23 @@ IndentationError: unindent does not match any outer indentation level
  ```
 
 
-### Loop sequences
+## Loop sequences
 
+
+### `while`
+The `while` control sequence works similiar to other languages.
+The `<instructions>` are executed while `<condition>` is verified.
+When the condition is finished, the `<else instructions>` are executed.
 
 ```
 while <condition>:
     <instructions>
-
+    
 else:
     <else instructions>
 ```
+
+
 Example:
 
 ```
@@ -513,6 +560,15 @@ Number: 5
 >>> 
 ```
 
+
+
+
+### `for`
+
+The `for` control works a bit different in python.
+
+For each iteration of `for`, the `<variable>` takes one of the values in the `<sequence or list>`.
+As soon as there are no more values in the list, the `for` loop stops.
 
 ```
 for <variable> in <sequence or list >:
@@ -536,9 +592,51 @@ Loop finished!
 >>> 
 ```
 
-## Nested code blocks or loop sequences
+### Control flow tools `break`, `continue`, `pass`
 
-Nesting a control sequence or code block inside an existing code block is as simple as adding another identation for the second code block.
+The control flow tools `break`, `continue`, and `pass` also work within `for` and `while`.
+
+* `break` ... Stops the `for` or `while` loop sequence
+* `continue` ... Skips the remaining code in the current loop iteration and moves on to the next iteration
+* `pass` ... Does nothing. It is used solely for python syntax purposes, mainly to maintain identation
+
+Example
+```
+for i in range(15):
+    print 'Iteration %d'%(i)
+    if i == 1:
+        print 'pass'
+        pass
+    elif i == 2:
+        print 'continue'
+        continue
+    elif i == 4:
+        print 'break'
+        break
+    elif i == 5:
+        print 'reached iteration 5'
+    print 'End of iteration %d'%(i)
+```
+
+Result
+```
+Iteration 0
+End of iteration 0
+Iteration 1
+pass
+End of iteration 1
+Iteration 2
+continue
+Iteration 3
+End of iteration 3
+Iteration 4
+break
+>>> 
+```
+
+## Nested code blocks
+
+Nesting a control sequence or code block inside an existing code block is as simple as adding another identation level for the child code block.
 
 ```
 >>> for i in range(3):
@@ -657,6 +755,33 @@ $
 ```
 
 
+## Boilerplate code for a python script
+
+The [boilerplate](code/boilerplate.py) code in `code/boilerplate.py` is recomended as the starting structure for a python script.
+
+```
+#!/usr/bin/env python
+""" Boilerplate description of the script 
+"""
+
+def main():
+    print "Hello world"
+
+if __name__ == "__main__":
+    main()
+```
+
+The first line `#!/usr/bin/env python` enables the script to be executed directly from the terminal in Unix systems.
+
+The text within `"""` is the `docstring` to document the script.
+
+While python executes the code in the script line by line sequentially, it is a good practice to separate the definition of the functions and the program execution.
+
+This is achieved by with the `if __name__ == "__main__":` condition at the end of the script, within which the `main()` function is executed.
+
+In addition, this structure enables the functions defined in this script to be imported and executed by other scripts, enabling code reproducibility. 
+
+
 
 ## Docstrings
 
@@ -755,6 +880,19 @@ Must call the python interpreter directly.
 $ C:\Python27\python.exe C:\Users\Username\Desktop\script.py
 ```
 
+---
 
+# Practice exercises
+
+
+
+
+---
+
+# Summary
+
+This concludes the introduction to python.
+The python syntax and default data types were detailed.
+You are now able to use the python interpreter directly or run python scripts.
 
 
