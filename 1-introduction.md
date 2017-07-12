@@ -629,6 +629,8 @@ def function(arg1=1, arg2=2.0):
 
 
 
+
+
 ---
 
 
@@ -655,12 +657,76 @@ $
 ```
 
 
-### Executable python scripts
+
+## Docstrings
+
+Docstrings are a block of code delimited by `""""` inserted right after the definition of a function, or at the start of a script, that easily document the functionality of that function, or script.
+
+> ***Note:*** Using a standard structure for the docstring (`Parameters`, `<argument> : <type>`, `Returns`), online documentation becomes easier as several parsers exist for this documentation structure.
+
+```
+def func(arg1, arg2):
+    """Summary line.
+
+    Extended description of function.
+
+    Parameters
+    ----------
+    arg1 : int
+        Description of arg1
+    arg2 : str
+        Description of arg2
+
+    Returns
+    -------
+    bool
+        Description of return value
+
+    Examples
+    --------
+    >>> func(1, "a")
+    True
+    """
+    
+    return True
+
+```
+
+The `docstring` of a function is automatically interpreted by the interpreter as part of that function's documentation.
+
+```
+>>> print func.__doc__
+Summary line.
+
+    Extended description of function.
+
+    Parameters
+    ----------
+    arg1 : int
+        Description of arg1
+    arg2 : str
+        Description of arg2
+
+    Returns
+    -------
+    bool
+        Description of return value
+
+    Examples
+    --------
+    >>> func(1, "a")
+    True
+>>> 
+```
+
+
+
+## Executable python scripts
 
 [Check here](http://pythoncentral.io/execute-python-script-file-shell/) on how to run the python script without having to call the python interpreter through the command line.
 
 
-#### Under Mac, Linux, BSD, Unix:
+### Under Mac, Linux, BSD, Unix:
 
 First line of the python script must include the path to the interpreter
 
@@ -681,7 +747,7 @@ $
 ```
 
 
-#### Under Windows
+### Under Windows
 
 Must call the python interpreter directly.
 

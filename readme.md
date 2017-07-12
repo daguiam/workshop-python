@@ -57,7 +57,8 @@ We aim to have a series of programming workshops related to Python, open source 
 
 * Diogo Aguiam (<diogoaguiam@gmail.com>], [@diogoaguiam](https://twitter.com/diogoaguiam)
 
-Luis Guimarais (<guimas@ipfn.tecnico.ulisboa.pt>)
+* Luis Guimarais (<guimas@ipfn.tecnico.ulisboa.pt>)
 
+--- 
 
 Licensed under: [Creative Commons BY 3.0](http://creativecommons.org/licenses/by/3.0)
