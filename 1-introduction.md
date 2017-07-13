@@ -59,7 +59,7 @@ Please check out: http://continuum.io/thanks and https://anaconda.org
 
 ## Python Syntax
 
-```
+```python
 >>> 1+3
 4
 >>> a = 3
@@ -86,7 +86,7 @@ Hello world
 
 Python can handle automatically the data formats: int, floats, complex, hex
 
-```
+```python
 >>> 1
 1
 >>> 1.0
@@ -108,7 +108,7 @@ Python can handle automatically the data formats: int, floats, complex, hex
 
 Mathematical operators: `+ - * / % **`
 
-```
+```python
 >>> 1+2
 3
 >>> 2-1
@@ -146,7 +146,7 @@ These are the default data types in the base module of python.
 
 Strings are a sequence of characters, like other programming languages, and can be indexed similarly.
 
-```
+```python
 >>> a = 'Hello World'
 >>> print a
 Hello World
@@ -154,7 +154,7 @@ Hello World
 
 Indexing strings
 
-```
+```python
 >>> a[0]
 'H'
 >>> a[10]
@@ -178,7 +178,7 @@ This enables a quick and descriptive debugging of the script.
 
 Additionaly, a subset of strings, arrays and lists in python can be indexed with a sequential range.
 
-```
+```python
 >>> a[0:3]
 'Hel'
 >>> a[:3]
@@ -206,7 +206,7 @@ Additionaly, a subset of strings, arrays and lists in python can be indexed with
 
 
 Concatenating strings together
-```
+```python
 >>> b = '!!!'
 >>> print a + b
 Hello World!!!
@@ -219,7 +219,7 @@ Hello World !!!
 
 
 Handling strings with numbers
-```
+```python
 >>> c = a + 22
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -234,7 +234,7 @@ TypeError: cannot concatenate 'str' and 'int' objects
 
 Strings can be formatted with variable info, similarly to other langauges.
 
-```
+```python
 >>> name = 'Dexter'
 >>> age = 15
 >>> print 'My name is %s and my age is %d'%(name,age)
@@ -242,7 +242,7 @@ My name is Dexter and my age is 15
 >>> 
 ```
 
-```
+```python
 >>> pi = 3.1415927
 >>> print 'Pi is %f'%(pi)
 Pi is 3.141593
@@ -258,7 +258,7 @@ Pi is 3.14
 
 Lists are limited by the square brackets `[`,`]` brackets and are not limited by a single data type.
 
-```
+```python
 >>> [1, 2, 3]
 [1, 2, 3]
 >>> [1, 'a', 2.0]
@@ -269,7 +269,7 @@ Lists are limited by the square brackets `[`,`]` brackets and are not limited by
 
 The indexing of lists is the same as for strings
 
-```
+```python
 >>> a = [0, 1, 2, 'a','string',3.14]
 >>> a[:3]
 [0, 1, 2]
@@ -283,7 +283,7 @@ The indexing of lists is the same as for strings
 #### Methods related to lists:
 
 Adding or removing elements to a list
-```
+```python
 >>> a = [0, 1, 2, 'a','string',3.14]
 >>> a
 [0, 1, 2, 'a', 'string', 3.14]
@@ -301,7 +301,7 @@ Adding or removing elements to a list
 ```
 
 Sorting lists
-```
+```python
 >>> a
 ['New first element', 0, 1, 2, 'a', 'string', 3.14]
 >>> a.sort()
@@ -315,7 +315,7 @@ Sorting lists
 
 Sorting lists with methods changes the underlying list.
 Better to use sorted to provide a sorted copy of the list:
-```
+```python
 >>> mylist = [4,2,1,2.3,10]
 >>> mylist.sort()
 >>> mylist
@@ -344,7 +344,7 @@ Extra: Custom sorting
 
 Usage: `range(start, [stop, [step]])`
 
-```
+```python
 >>> a = range(10)
 >>> a
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -381,7 +381,7 @@ Usage: `mydictiony = {'key_name': values}`
 
 Very efficient way to create a database and access its elements. Useful for configuration files, etc
 
-```
+```python
 >>> user = {}
 >>> user
 {}
@@ -393,7 +393,7 @@ Very efficient way to create a database and access its elements. Useful for conf
 
 > ***Question:*** How can we create command to print `The user Dexter is 15 years old` ?
 
-```
+```python
 >>> user['mylist'] = ['element1',2222,'string']
 >>> user
 {'age': 15, 'mylist': ['element1', 2222, 'string'], 'name': 'Dexter'}
@@ -414,7 +414,7 @@ Very efficient way to create a database and access its elements. Useful for conf
 
 #### Methods to handle dictionaries
 
-```
+```python
 >>> user.keys()
 ['age', 'mylist', 'name']
 >>> user.values()
@@ -443,7 +443,7 @@ Comparison operators:
 always return a `True` or `False`
 
 
-```
+```python
 >>> a = 1
 >>> a == 1
 True
@@ -489,7 +489,7 @@ else :
 
 Example
 
-```
+```python
 >>> x = 1
 >>> if x == 1:
 ...     print 'x is 1'
@@ -502,7 +502,7 @@ x is 1
 
 What about checking if the name you are asking is inside a valid name list?
 
- ```
+ ```python
 >>> namelist = ['John', 'Maria', 'Mohammed']
 >>> user = 'George'
 >>> if user in namelist:
@@ -519,7 +519,7 @@ user George is not in the name list!
  If the separation indentation uses both tabs and spaces, the interpreter may raise an identation error.
  Some IDEs already convert tabs to 4 spaces. You should configure your IDE to do the same when programming in python.
 
-```
+```python
 >>> if True:
 ...     2
 ...     3
@@ -550,7 +550,7 @@ else:
 
 Example:
 
-```
+```python
 >>> i = 0
 >>> while i<=5 :
 ...     print 'Number:',i
@@ -575,14 +575,14 @@ The `for` control works a bit different in python.
 For each iteration of `for`, the `<variable>` takes one of the values in the `<sequence or list>`.
 As soon as there are no more values in the list, the `for` loop stops.
 
-```
+```python
 for <variable> in <sequence or list >:
     <instructions>
 else:
     <else instructions>
 ```
 
-```
+```python
 >>> for i in range(5):
 ...     print 'Number',i
 ... else:
@@ -606,7 +606,7 @@ The control flow tools `break`, `continue`, and `pass` also work within `for` an
 * `pass` ... Does nothing. It is used solely for python syntax purposes, mainly to maintain identation
 
 Example
-```
+```python
 for i in range(15):
     print 'Iteration %d'%(i)
     if i == 1:
@@ -624,7 +624,7 @@ for i in range(15):
 ```
 
 Result
-```
+```python
 Iteration 0
 End of iteration 0
 Iteration 1
@@ -643,7 +643,7 @@ break
 
 Nesting a control sequence or code block inside an existing code block is as simple as adding another identation level for the child code block.
 
-```
+```python
 >>> for i in range(3):
 ...     for j in range(2):
 ...         print 'Numbers: %d-%d'%(i,j)
@@ -665,7 +665,7 @@ Functions are reproducible and act on the passed arguments.
 
 In python functions are defined as blocks of code whose syntax is
 
-```
+```python
 def function_name(<argument1>, <argument2>):
     """ Optional but recomended description of the function
     including input arguments
@@ -678,7 +678,7 @@ def function_name(<argument1>, <argument2>):
 
 An example function is
 
-```
+```python
 >>> def print_text(text="Hello World"):
 ...     print text
 ...     return 
@@ -699,7 +699,7 @@ If the argument is not defined when executing the function, then the default val
 Multiple arguments may defined in a single function in the same line or in multiple lines
 
 
-```
+```python
 >>> def print_text( text1="Hello",
 ...                 text2="World"):
 ...     print text1,text2
@@ -722,7 +722,7 @@ TypeError: print_text() got multiple values for keyword argument 'text1'
 > ***Note:*** Good python programming style practices allow arguments to be defined in the same line when total line length is not exagerated (<80 characters).
 Also, keep default value assignments together with no space, while separating arguments by a comma + space. 
 
-```
+```python
 def function(arg1=1, arg2=2.0):
     return
 ```
@@ -794,7 +794,7 @@ Docstrings are a block of code delimited by `""""` inserted right after the defi
 
 > ***Note:*** Using a standard structure for the docstring (`Parameters`, `<argument> : <type>`, `Returns`), online documentation becomes easier as several parsers exist for this documentation structure.
 
-```
+```python
 def func(arg1, arg2):
     """Summary line.
 
@@ -824,7 +824,7 @@ def func(arg1, arg2):
 
 The `docstring` of a function is automatically interpreted by the interpreter as part of that function's documentation.
 
-```
+```python
 >>> print func.__doc__
 Summary line.
 
@@ -861,7 +861,7 @@ Summary line.
 First line of the python script must include the path to the interpreter
 
 `script.py`:
-```
+```python
 #!/usr/bin/env python
 
 print 'This code was executed from a python script'
