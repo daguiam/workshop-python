@@ -331,7 +331,7 @@ Better to use sorted to provide a sorted copy of the list:
 ```
 
 Extra: Custom sorting
-```
+```python
 >>> a = ['222','aaaaa','2']
 >>> a
 ['222', 'aaaaa', '2']
@@ -472,7 +472,7 @@ True
 
 ### `if` control
 
-```
+```python
 if <condition 1> :
     <instruction 1>
 elif <condition 2> :
@@ -539,7 +539,7 @@ The `while` control sequence works similiar to other languages.
 The `<instructions>` are executed while `<condition>` is verified.
 When the condition is finished, the `<else instructions>` are executed.
 
-```
+```python
 while <condition>:
     <instructions>
     
@@ -764,7 +764,7 @@ $
 
 The [boilerplate](code/boilerplate.py) code in `code/boilerplate.py` is recomended as the starting structure for a python script.
 
-```
+```python
 #!/usr/bin/env python
 """ Boilerplate description of the script 
 """
@@ -824,7 +824,7 @@ def func(arg1, arg2):
 
 The `docstring` of a function is automatically interpreted by the interpreter as part of that function's documentation.
 
-```python
+```
 >>> print func.__doc__
 Summary line.
 
