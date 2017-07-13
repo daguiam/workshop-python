@@ -29,6 +29,8 @@ You may install the Python 2.7 through the Anaconda platform, which will also in
 
 Please download and install **Python 2.7** in https://www.continuum.io/downloads for your operating system.
 
+***Note:*** Do install the full Anaconda that contains all the relevant packages for this workshop
+
 
 ---
 
