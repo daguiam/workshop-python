@@ -263,3 +263,9 @@ We show how to load data from `.csv` (comma separated value) files and the
 def function()
 
 ```
+```python
+data = np.genfromtxt(path_to_csv, dtype=None, delimiter=',', names=True)
+
+
+
+```
