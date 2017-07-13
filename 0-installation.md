@@ -1,22 +1,43 @@
-# Installing Python
+# What is Python 
+
+From [tutorialspoint](https://www.tutorialspoint.com/python/index.htm):
+> Python is a general-purpose interpreted, interactive, object-oriented, and high-level programming language. It was created by Guido van Rossum during 1985- 1990. Like Perl, Python source code is also available under the GNU General Public License (GPL). This tutorial gives enough understanding on Python programming language.
+
+
+Python currently has two versions with active development: 2.7 and 3.6. 
+Version 3 has some internal code changes that break backwards compatibility with version 2.
+However, we do not go into much discussion about this for this workshop. 
+Version 2 is the most supported in terms of packages and the most used at the moment.
+
+# For this workshop we use ***Python 2.7***
+
+## Installing Python 2.7
 
 
 First you should install the correct python package for your operating system.
-Check [Installation](0-installation.md)
 
-For this tutorial we use
+Most linux distributions already have the base python packages installed.
+However, for this workshop we will require additional packages that must be accessible.
+* Python 2.7
+* NumPy
+* SciPy
+* pandas 
+* matplotlib
+* pip
 
-* Python 2.7.0 release at <https://www.python.org/download/releases/2.7/>
+You may install the Python 2.7 through the Anaconda platform, which will also install the required python packages for this workshop.
 
+Please download and install **Python 2.7** in https://www.continuum.io/downloads for your operating system.
 
 
 ---
 
+* Python <https://www.python.org/>
+    
 Other useful platforms can be used around Python:
 
 * IPython <https://ipython.org/>
     > IPython is a command shell for interactive computing in multiple programming languages, originally developed for the Python programming language, that offers introspection, rich media, shell syntax, tab completion, and history
-
 
 * Anaconda <https://www.continuum.io/downloads>
 
@@ -30,3 +51,5 @@ Other useful platforms can be used around Python:
 * Spyder <http://pythonhosted.org/spyder/> (maybe down)
     > Spyder is an interactive Python development environment providing MATLAB-like features in a simple and light-weighted software.
 
+* PyPI - the Python Package Index <https://pypi.python.org/pypi>
+    > The Python Package Index is a repository of software for the Python programming language. 
