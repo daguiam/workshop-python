@@ -69,11 +69,14 @@ The workshop will include the basic topics mentioned in the doodle:
 
 At the end of the workshop you shall be able to load .csv files, manipulate data, and create publication quality figures.
 
-Please do register until Monday, July 24th, for the event at
+Please do register before Monday, July 24th, for the event at
 
 https://docs.google.com/forms/d/1Hc3t8VbMBtpmNtLo8Q2M4aokFISTVSVIm9Stjcxauw8/
 
-We will send yet another email to those who register a few days before the event with the details for the location and time of the workshop and t
+We will send yet another email to those who register a few days before the event with the details for the location and time of the workshop.
+
+Best regards,
+Diogo Aguiam and Luis Guimarãis
 
 
 
