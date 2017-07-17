@@ -340,7 +340,35 @@ However, for real data processing it is better to use a more robust library such
 
 For floats we have to use another library (numpy.linspace)
 
+### Tuples
 
+Tuples are defined in python with normal parenthesis `()`.
+Tuples are the same as lists, that they are a data sequenece with any data type.
+The main difference is that tuples are immutable, meaning that they can not be changed after being defined.
+
+```python
+>>> b = [1,2,'aa']
+>>> b
+[1, 2, 'aa']
+>>> b[0]='dd'
+>>> b
+['dd', 2, 'aa']
+>>> 
+```
+
+But with tuples we get:
+```python
+>>> b = (1,2,'aa')
+>>> b
+(1, 2, 'aa')
+>>> b[0]
+1
+>>> b[0] = 'dd'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'tuple' object does not support item assignment
+>>> 
+```
 
 ### Dictionaries
 

@@ -1,4 +1,4 @@
-# Data processing with python
+# Data processing and visualization with python
 
 Data analysis or data processing is one of the core requirements in any scientific field.
 Python is a general purpose language that has an extensive library of importable modules for nearly any field.
@@ -137,7 +137,42 @@ kg
 > ***Question:*** What other constants can you think of? SciPy most likely has them.
 
 
-Another very important module is `NumPy` that enables easy computing of multidimensional arrays of data and also includes the most used processing functions such as Fourier transforms, linear algebra, etc.
+```python
+>>> import numpy as np
+>>> a = np.array([0,1,2,3,4,5])
+>>> b = a**2
+>>> b
+array([ 0,  1,  4,  9, 16, 25])
+```
+
+# Introduction to `NumPy`
+
+Python lists are great to store a wide variety of data as they are very flexible. 
+However, such flexibility comes at a cost of computational efficiency.
+
+Imagine you have a range of `x` values for which you want to calculate `y = f(x)`.
+
+Let's consider 
+
+```python
+>>> x = [0,1,2,3,4]
+>>> y = x**2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: unsupported operand type(s) for ** or pow(): 'list' and 'int'
+>>>
+```
+
+We get an error because we cannot directly calculate on each value of the list. 
+We have to iterate over each value.
+For example:
+
+```python
+>>> y = [x**2 for x in x]
+>>> y
+[0, 1, 4, 9, 16]
+>>> 
+```
 
 > ***Question:*** What happens when you want to multiply a value elementwise for all the elements in an array?
 
@@ -148,7 +183,6 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: unsupported operand type(s) for ** or pow(): 'list' and 'int'
 ```
-
 > ***Question:*** What about when using the standard array module in Python?
 ```python
 >>> import array
@@ -160,7 +194,28 @@ array('f', [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0])
 >>> 
 ```
 
+Still doable, but more complicated.
+This complicates much more when you want more complicated data processing with different variables.
+
+
+## Advantages of `NumPy` 
+For this reason the `NumPy` Numerical Python package was created.
+ `NumPy` enables easy computing of multidimensional arrays of data and also includes the most used processing functions such as Fourier transforms, linear algebra, etc.
+
+From [*"A primer on scientific programming with Python"*](https://hplgit.github.io/primer.html/doc/pub/half/book.pdf)
+
+> * All elements must be of the same type, preferably `integer`, `real`, or `complex` numbers, for efficient numerical computing and storage.
+> * The number of elements must be known when the array is created.
+> * Arrays are not part of standard Python - one needs an additional package called Numerical Python, often abbreviated as `NumPy`. The Python name of the package, to be used in import statements, is numpy.
+> * With numpy, a wide range of mathematical operations can be done directly on complete arrays, thereby removing the need for loops over array elements. This is commonly called vectorization
+> * Arrays with one index are often called vectors. Arrays with two indices are used as an efficient data structure for tables, instead of lists of lists. Arrays can also have three or more indices.
+
+The number of elements in an array can be changed but at a high computational cost.
+
+
 For this kind of procedure you should use `NumPy` (<https://docs.scipy.org/doc/numpy/reference/index.html>)
+
+A list can be converted to a numpy array as long as every element can be casted to the same data type.
 
 ```python
 >>> import numpy as np
@@ -169,7 +224,29 @@ For this kind of procedure you should use `NumPy` (<https://docs.scipy.org/doc/n
 >>> b
 array([ 0,  1,  4,  9, 16, 25])
 ```
-Creating arrays
+
+## Vectorization
+
+Instead of looping over very value in the array, numpy can use vectorization, which means that the operation is executed over the whole array directly, without expliciting the loop.
+
+Vectorization is a great procedure as it allows complicating the mathematical operation without code complexity.
+```python
+>>> x = np.linspace(0,2,201)
+>>> y = np.sin(np.pi*x)*np.cos(x)*np.exp(-x**2) + 2 + x**2
+>>>
+```
+
+Functions can also receive numpy arrays as arguments and execute operations on them
+
+```python
+>>> def f(x):
+...     return np.exp(x**2)
+... 
+>>> f(x)
+```
+
+## Creating arrays
+
 ```python
 >>> a = np.arange(0,10)
 >>> a
@@ -199,10 +276,11 @@ array([  0. ,   2.5,   5. ,   7.5,  10. ])
 >>> a
 array([[0, 1, 2, 3, 4],
        [5, 6, 7, 8, 9]])
+>>> np.arange(0,2,0.1)
+array([ 0. ,  0.1,  0.2,  0.3,  0.4,  0.5,  0.6,  0.7,  0.8,  0.9,  1. ,
+        1.1,  1.2,  1.3,  1.4,  1.5,  1.6,  1.7,  1.8,  1.9])
 >>> 
-
 ```
-
 
 Creating regular arrays using `NumPy`:
 * `arange([start,] stop[, step,][, dtype])` ... Return evenly spaced values within a given interval.
@@ -249,7 +327,9 @@ More linear algebra using python can be checked at <https://docs.scipy.org/doc/n
 >>> 
 ```
 
+# Visualization with `matplotlib`
 
+Handling data is way more useful when 
 
 
 # Handling `.csv` files
