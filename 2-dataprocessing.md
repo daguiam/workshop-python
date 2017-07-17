@@ -97,7 +97,7 @@ Check more here <https://www.scipy.org/about.html>
 ## matplotlib <https://matplotlib.org/>
 > Matplotlib is a Python 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments across platforms. Matplotlib can be used in Python scripts, the Python and IPython shell, the jupyter notebook, web application servers, and four graphical user interface toolkits.
 >
-> Matplotlib tries to make easy things easy and hard things possible. You can generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc., with just a few lines of code. For a sampling, see the screenshots, thumbnail gallery, and examples directory
+> Matplotlib tries to make easy things easy and hard things possible. You can generate plots, histograms, power spectra, bar charts, errorcharts, scatterplots, etc., with just a few lines of code. 
 
 
 ---
@@ -329,13 +329,78 @@ More linear algebra using python can be checked at <https://docs.scipy.org/doc/n
 
 # Visualization with `matplotlib`
 
-Handling data is way more useful when 
+Handling data is way easier when we can visualize the data instead of only looking at the numbers.
+Python has the `matplotlib` package for plotting any kinds of data using a range of different backends.
+
+Importing matplotlib is as simple as:
+
+```python
+import matplotlib.pylab as plt
+import numpy as np
+
+x = np.linspace(0,4,401)
+y = np.sin(np.pi*x)
+plt.plot(x,y)
+plt.show()
+```
+A window should open up after `plt.show()` with the plotted `x,y` data.
+You can use this window to zoom in on the plotted data, make some small adjustments and save the figures.
+
+> ***Note:*** I suggest using these tools to verify some data, but any details in publication figures should be explicit in the respective python script!
+
+
+We can also decorate our `matplotlib` plots in any way we want, using data labels, legends, colors, etc.
+
+Check the `examples/` scripts
 
 
 # Handling `.csv` files
 
+Data can be stored and loaded in pretty much any kind of structure using Python, from comma separated values, json, binary files, databases or compressed files.
 
-We show how to load data from `.csv` (comma separated value) files and the 
+Here we will introduce how to store and load data in the common comma separated value `.csv` format.
+
+`.csv` files have usually a header, determining what is in each of the columns, and each row corresponds to a new data line.
+
+An example:
+```
+a,b
+0.953274884328,0.908733005091
+-0.438914494799,0.192645933745
+1.67484667805,2.80511139497
+
+```
+
+
+To handle `csv` data we use an additional python library, `pandas`.
+`pandas` is a great library to handle different data structures and one of the most used python tools in data sciences.
+Here we will use it to simply store and load `.csv` files for us, since the `NumPy` library is not as complete.
+
+
+## Loading data from `.csv` into `NumPy` structure
+
+Assuming that the first line of the `.csv` file includes the names of the respective columns, we can use the numpy library directly.
+
+```python
+import numpy as np
+
+filename='data.csv'
+data = np.genfromtxt(filename, delimiter=',', names=True)
+t = data['t']
+sig1 = data['sig1']
+```
+
+Or we can use the pandas library together with numpy.
+
+```python
+import pandas as pd
+import numpy as np
+
+filename = 'data.csv'
+data = pd.read_csv(filename)
+t = data['t']
+sig1 = data['sig1']
+```
 
 
 
