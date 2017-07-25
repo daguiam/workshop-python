@@ -378,6 +378,9 @@ To handle `csv` data we use an additional python library, `pandas`.
 Here we will use it to simply store and load `.csv` files for us, since the `NumPy` library is not as complete.
 
 
+
+***Note:*** We use data from <https://www.meteoblue.com>
+
 ## Loading data from `.csv` into `NumPy` structure
 
 Assuming that the first line of the `.csv` file includes the names of the respective columns, we can use the numpy library directly.
