@@ -27,11 +27,12 @@ However, for this workshop we will require additional packages that must be acce
 
 You may install the Python 2.7 through the Anaconda platform, which will also install the required python packages for this workshop.
 
-Please download and install **Python 2.7** in https://www.continuum.io/downloads for your operating system.
+Please download and install the full **Python 2.7** package in https://www.continuum.io/downloads for your operating system.
 
 ***Note:*** Do install the full Anaconda that contains all the relevant packages for this workshop
 
 
+Other Python packages
 ---
 
 * Python <https://www.python.org/>
@@ -48,7 +49,7 @@ Other useful platforms can be used around Python:
 * Jupyter <http://jupyter.org/>
 
     > The Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and explanatory text. Uses include: data cleaning and transformation, numerical simulation, statistical modeling, machine learning and much more.
-    > Similar to Mathematica notebooks
+    > Similar to Mathematica notebooks.
 
 * Spyder <http://pythonhosted.org/spyder/> (maybe down)
     > Spyder is an interactive Python development environment providing MATLAB-like features in a simple and light-weighted software.

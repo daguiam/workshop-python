@@ -54,12 +54,13 @@ Dear colleagues,
 
 Thank you very much to everyone who posted to the doodle. We received 37 responses from people interested in attending the workshops!
 
-We will be doing an Introduction to Python workshop on the 27th of July 2017, at Instituto Superior Técnico (room still to be reserved considering how many people will attend).
+We will be doing an Introduction to Python workshop on Thursday, 27th of July 2017, in the North Building, amphitheatre EA3, at Instituto Superior Técnico 
+
 We will start at 9am with a 4 hour session.
 Depending on how fast the workshop goes, we may have an extra session after lunch, at around 14h30, to continue the workshop or talk about more advanced topics.
 
 This will be a hands-on live programming session and you are recommended to bring your own laptop with Python 2.7 pre-installed. 
-Please refer to [this link](https://github.com/daguiam/workshop-python/blob/master/0-installation.md) for details of installation.
+Please refer to [this link](http://bit.ly/2uM7IWs) for details of installation.
 
 The workshop will include the basic topics mentioned in the doodle:
 
@@ -67,13 +68,13 @@ The workshop will include the basic topics mentioned in the doodle:
 2. Data loading and processing using NumPy
 3. Plotting data with matplotlib
 
-At the end of the workshop you shall be able to load .csv files, manipulate data, and create publication quality figures.
+At the end of the workshop you shall be able to load .csv files, manipulate data, and create figures.
 
-Please do register before Monday, July 24th, for the event at
+Please do register until Tuesday, July 24th, for the event at
 
-https://docs.google.com/forms/d/1Hc3t8VbMBtpmNtLo8Q2M4aokFISTVSVIm9Stjcxauw8/
+http://bit.ly/2vF4YGD
 
-We will send yet another email to those who register a few days before the event with the details for the location and time of the workshop.
+We will send yet another email to those who register on the eve of the event with the details for the location and time of the workshop.
 
 Best regards,
 Diogo Aguiam and Luis Guimarãis

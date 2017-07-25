@@ -329,6 +329,7 @@ More linear algebra using python can be checked at <https://docs.scipy.org/doc/n
 
 # Visualization with `matplotlib`
 
+
 Handling data is way easier when we can visualize the data instead of only looking at the numbers.
 Python has the `matplotlib` package for plotting any kinds of data using a range of different backends.
 
