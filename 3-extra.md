@@ -1,5 +1,9 @@
 # Advanced features of python
 
+* Importing other scripts
+* Passing arguments into python script from terminal
+* 
+
 
 # Importing an existing script and running its functions
 
