@@ -328,10 +328,6 @@ More linear algebra using python can be checked at <https://docs.scipy.org/doc/n
 ```
 
 
-
-
-
-
 # Handling simple `.csv` files using NumPy
 
 Data can be stored and loaded in pretty much any kind of structure using Python, from comma separated values, json, binary files, databases or compressed files.
@@ -447,6 +443,9 @@ if __name__ == "__main__":
 
 > ***Question:*** How to plot all the days correctly overlapping?
 
+
+
+
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -479,7 +478,7 @@ if __name__ == "__main__":
     plt.show()
 ```
 
-### Decorating with axis labels 
+## Decorating with axis labels 
 Now we can decorate our figure by adding x and y labels and a title.
 ```python
     plt.title('Lisbon temperature')
@@ -487,7 +486,7 @@ Now we can decorate our figure by adding x and y labels and a title.
     plt.ylabel('Temperature [C]')
 ```
 
-### Processing the data to get the average, maximum and minimum temperatures
+## Processing the data to get the average, maximum and minimum temperatures
 
 ```python
 import matplotlib.pyplot as plt
@@ -505,11 +504,22 @@ if __name__ == "__main__":
     plt.plot(hour, temp_mean)
     plt.plot(hour, temp_max)
     plt.plot(hour, temp_min)
+    plt.title('Lisbon temperature')
+    plt.xlabel('Time of day')
+    plt.ylabel('Temperature [C]')
     plt.show()
 ```
 
-### Adding legends to each plot 
-And add legends to individual plots. This is a great feature and one of my favorites coming from matlab.
+## Adding legends to each plot 
+
+
+Adding legends to the data that we have plotted is as simple as doing
+```python
+    plt.legend(['Average','Maximum','Minimum'])
+```
+However, `matplotlib` has a great feature that you can add labels to the individual plots and never have to worry about the sequence of data being plotted. This is aone of my favorite features coming from matlab.
+
+You can even disregard the label of a single plot if you do not want it to show.
 
 ```python
 import matplotlib.pyplot as plt
@@ -529,9 +539,42 @@ if __name__ == "__main__":
     plt.plot(hour, temp_min, label='Minimum')
 
     plt.legend()
+
+    plt.title('Lisbon temperature')
+    plt.xlabel('Time of day')
+    plt.ylabel('Temperature [C]')
     plt.show()
 ```
 
+## Color and line style decorations
+
+We can also change the colors of our plots besides the default colormaps. Consider that we want the maximum temperate to be red and the minimum blue while the average is green, for example.
+We can use english style colors as these are internally matched to the correct color:
+
+```python
+    plt.plot(hour, temp_mean, label='Average', color='Green')
+    plt.plot(hour, temp_max, label='Maximum', color='Red')
+    plt.plot(hour, temp_min, label='Minimum', color='Blue')
+```
+
+We can make the average line thicker:
+```python
+    plt.plot(hour, temp_mean, label='Average', color='Green', linewidth=5)
+```
+
+And we can change the alpha of the plot:
+```python
+    plt.plot(hour, temp_mean, label='Average', color='Green', linewidth=5, alpha=0.5)
+```
+
+And add markers
+```python
+    plt.plot(hour, temp_mean, label='Average', color='Green', linewidth=5, alpha=0.5, marker='o')
+```
+
+
+
+> ***Question:*** What happens if you resize the plot of each one?
 
 
 ## 2D plotting
@@ -539,7 +582,7 @@ if __name__ == "__main__":
 We can also plot this data in a 2D plot. For this we also use the internal `matplotlib` functions `pcolormesh` or `imshow`.
 
 My favorite is `pcolormesh` for scientific data since it allows for different xy aspects while `imshow` tries to maintain xy aspect ratio of 1, assuming that each data cell is a pixel of an image.
-Let us compare both:
+Let us compare both on a *new* script file:
 
 ```python
 import matplotlib.pyplot as plt
@@ -553,45 +596,185 @@ if __name__ == "__main__":
     plt.pcolormesh(data)
     plt.show()
 ```
-> ***Question:*** What happens if you resize the plot of each one?
 
-
-## Using subplots
-
-Subplots are a great tool when you want to compare different data.
-Here we will compare the temperature of or three consecutive days in Lisbon.
-
-
-
-
-
-
-
-
-Comparing wind and temperature data. First we load the data
+2D data is actually 3 dimensional data while the third dimension is represented by the color of the 2D plot. In order to get a scale of the color we require a `colorbar` to be plotted alongside our mesh. We remove the unused `imshow` and add the `colorbar`
 
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
 if __name__ == "__main__":
     filename = 'lisbon_temperature.csv'
-    tempdata = np.genfromtxt(filename, delimiter=',')
-    filename = 'lisbon_wind.csv'
-    winddata = np.genfromtxt(filename, delimiter=',')
-    f, axarray = plt.subplots(2, 1, sharex=True)
-    ax = axarray[0]
-    ax.plot(tempdata.T)
-    ax = axarray[1]
-    ax.plot(winddata.T)
+    data = np.genfromtxt(filename, delimiter=',')
+    plt.pcolormesh(data)
+    plt.colorbar(label='Temperature [C]')
+    plt.ylabel('Day')
+    plt.xlabel('Time of day')
+    plt.show()
+```
+
+## Using subplots
+
+Subplots are a great tool when you want to compare different data in the same figure. Here we will use both the average daily and hourly temperatures as well as the 2D plot to represent our data and gain some interesting insight.
+
+First lets get acquainted with the subplot syntax:
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    fig, axarray = plt.subplots(2, 2)
+    plt.plot([1, 2, 3, 1, 2, 12, 13])
+    plt.show()
+```
+
+We see that a 2x2 grid of axes were created. And that our plot was plotted into the last axis on the lower right.
+
+Now we want to reference each of these axes to plot our data to it.
+The syntax changes slightly for our subplots but once we get used to it, they are very versatile.
+
+The reference to each axis in the 2x2 grid is stored in the (2,2) `axarray` variable.
+We select the current axis by indexing inside the `axarray`.
+The [0,0] position is the top left, [0,1] is top right, and the [1,1] position is the lower right. 
+If we only use a 2x1 or 1x2 grid, for example, our `axarray` is a one dimension vector.
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    fig, axarray = plt.subplots(2, 2)
+    plt.sca(axarray[0,0])
+    plt.plot([1, 2, 3, 1, 2, 12, 13])
+    plt.sca(axarray[0,1])
+    plt.plot([1, 2, 3, 1, 2, 12, 13])
+    plt.show()
+```
+
+Now lets start a subplot with the 2D temperature plot on the top left and the hourly average, maximum and minimum data on the bottom left
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+
+    temp_mean = np.mean(data, axis=0)
+    temp_max = np.max(data, axis=0)
+    temp_min = np.min(data, axis=0)
+
+    fig, axarray = plt.subplots(2, 2)
+
+    # Bottom left
+    plt.sca(axarray[1,0])
+    plt.pcolormesh(hour,days,data)
+
+    # Top left
+    plt.sca(axarray[0,0])
+    plt.plot(hour, temp_mean, label='Average')
+    plt.plot(hour, temp_max, label='Maximum')
+    plt.plot(hour, temp_min, label='Minimum')
 
     plt.show()
 ```
 
+Lets add the daily temperature data to the top right:
+```python
+    # Bottom right
+    plt.sca(axarray[1,1])
+    day_mean = np.mean(data, axis=1)
+    day_max = np.max(data, axis=1)
+    day_min = np.min(data, axis=1)
+    plt.plot(days, day_mean, label='Average')
+    plt.plot(days, day_max, label='Maximum')
+    plt.plot(days, day_min, label='Minimum')
+```
+But actually lets swap x and y in this plot so it matches the top left 2D data:
+```python
+    # Bottom right
+    plt.sca(axarray[1,1])
+    day_mean = np.mean(data, axis=1)
+    day_max = np.max(data, axis=1)
+    day_min = np.min(data, axis=1)
+    plt.plot(day_mean, days, label='Average')
+    plt.plot(day_max, days, label='Maximum')
+    plt.plot(day_min, days, label='Minimum')
+```
 
+But if we zoom in on any of the plots, we only affect that one! We can, however, make so that all the subplots share each other's axis and limits.
+To do this we alter the `suplots` method to include how the axes should be shared:
+```python
+    fig, axarray = plt.subplots(2, 2, sharex='col', sharey='row')
+```
 
+We can hide the top right axes since we are not using it with
+```python
+    axarray[0,1].axis('off')
+```
+### Final script with decorations
+And we can add the respective x and y labels to each of the plots. The final script is something like:
 
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
 
+    temp_mean = np.mean(data, axis=0)
+    temp_max = np.max(data, axis=0)
+    temp_min = np.min(data, axis=0)
+    
+    fig, axarray = plt.subplots(2, 2, sharex='col', sharey='row')
 
+    # Bottom left
+    plt.sca(axarray[1,0])
+    plt.pcolormesh(hour,days,data)
+    plt.ylabel('Day')
+    plt.xlabel('Time of day')
+
+    # Top left
+    plt.sca(axarray[0,0])
+    plt.plot(hour, temp_mean, label='Average')
+    plt.plot(hour, temp_max, label='Maximum')
+    plt.plot(hour, temp_min, label='Minimum')
+    plt.ylabel('Temperature [C]')
+
+    # Bottom right
+    plt.sca(axarray[1,1])
+    day_mean = np.mean(data, axis=1)
+    day_max = np.max(data, axis=1)
+    day_min = np.min(data, axis=1)
+
+    plt.plot(day_mean, days, label='Average')
+    plt.plot(day_max, days, label='Maximum')
+    plt.plot(day_min, days, label='Minimum')
+    plt.xlabel('Temperature [C]')
+
+    # Hiding top right frame
+    axarray[0,1].axis('off')
+
+    plt.suptitle('Lisbon temperature in July 2017')
+    plt.show()
+```
+
+## Saving figures
+
+`matplotlib` also allows saving figures to most output file formats. We can save the figure directly from our figure window.
+However for reproducible images, we should embed the figure saving into our script.
+This is as simple as calling `savefig` at the end of the script.
+The output image file format is automatically determined from the filename extension. Output file formats can be `png`, `pdf`, `eps`, `svg`, etc.
+We can also set the output dpi.
+
+```python
+    fig.savefig('lisbon_temperature.png', dpi=300)
+```
+
+---
+
+---
 
 # Handling `.csv` files with header column names
 
@@ -614,9 +797,6 @@ a,b
 To handle `csv` data we use an additional python library, `pandas`.
 `pandas` is a great library to handle different data structures and one of the most used python tools in data sciences.
 Here we will use it to simply store and load `.csv` files for us, since the `NumPy` library is not as complete.
-
-
-
 
 ## Loading data from `.csv` into `NumPy` structure
 
