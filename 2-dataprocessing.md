@@ -327,10 +327,60 @@ More linear algebra using python can be checked at <https://docs.scipy.org/doc/n
 >>> 
 ```
 
-# Visualization with `matplotlib`
 
 
-Handling data is way easier when we can visualize the data instead of only looking at the numbers.
+
+
+
+# Handling simple `.csv` files using NumPy
+
+Data can be stored and loaded in pretty much any kind of structure using Python, from comma separated values, json, binary files, databases or compressed files.
+
+Here we will introduce how to store and load data in the common comma separated value `.csv` format.
+
+These `.csv` files can consist of solely the data you want to load but also a header row that determines the value of each column.
+In this chapter we will only consider clean, data-only `.csv` files.
+
+For the purpose of this tutorial we gathered the [Lisbon hourly temperature between July 11th to July 25th 2017 from meteoblue.com](<https://www.meteoblue.com>). You can find this data in the `data/lisbon_temperature.csv` file.
+
+Each column in the file is the temperature in Lisbon at each hour, starting from 0 to 23, and each row is the respective day 11 to 25 July 2017.
+
+The file looks something like this:
+```
+16.93,16.54,16.29,16.12,15.99,15.83,15.73, ...
+18.18,18.16,18.04,17.92,17.75,17.66,17.63, ...
+18.94,18.44,18.27,18.23,18.33,18.19,17.92, ...
+...
+```
+
+
+Now we want to load this data into our python script so that we can use it.
+Luckily there are many functions to handle `.csv` files in python, namely our familiar `NumPy`.
+
+We can import the data by running 
+
+```python
+filename = 'lisbon_temperature.csv'
+data = np.genfromtxt(filename, delimiter=',')
+```
+Numpy tries to automatically intepret the kind of data it loads, defaulting most of the times to floating point.
+And we can check the data that we just loaded
+
+```python
+print data
+print data.shape
+print len(data)
+print data.T
+print data[0]
+print data[:,0]
+```
+
+# Visualizing data with `matplotlib`
+
+
+
+
+All the data seems to be there. But it is hard to make sense of just numbers. It is much easier if we can visualize all the data that we just loaded.
 Python has the `matplotlib` package for plotting any kinds of data using a range of different backends.
 
 Importing matplotlib is as simple as:
@@ -344,6 +394,7 @@ y = np.sin(np.pi*x)
 plt.plot(x,y)
 plt.show()
 ```
+
 A window should open up after `plt.show()` with the plotted `x,y` data.
 You can use this window to zoom in on the plotted data, make some small adjustments and save the figures.
 
@@ -352,10 +403,85 @@ You can use this window to zoom in on the plotted data, make some small adjustme
 
 We can also decorate our `matplotlib` plots in any way we want, using data labels, legends, colors, etc.
 
-Check the `examples/` scripts
 
 
-# Handling `.csv` files
+
+All the data seems to be there. But it is hard to make sense of just numbers. It is much easier if we can visualize all the data that we just loaded. For this we plot the data in our script.
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    plt.plot(data)
+    plt.show()
+```
+> ***Question:*** What is wrong with our plot?
+
+> ***Question:*** How to plot a single day?
+
+> ***Question:*** How to plot all the days correctly overlapping?
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    for day_data in data:
+      plt.plot(day_data)
+    plt.show()
+```
+
+Now let's work with a single day data.
+
+
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    for day_data in data:
+      plt.plot(day_data)
+    plt.show()
+```
+
+## 2D plotting
+
+We can also plot this data in a 2D plot. For this we also use the internal `matplotlib` functions `pcolormesh` or `imshow`.
+
+My favorite is `pcolormesh` for scientific data since it allows for different xy aspects while `imshow` tries to maintain xy aspect ratio of 1, assuming that each data cell is a pixel of an image.
+Let us compare both:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    plt.figure()
+    plt.imshow(data)
+    plt.figure()
+    plt.pcolormesh(data)
+    plt.show()
+```
+> ***Question:*** What happens if you resize the plot of each one?
+
+
+
+
+
+
+***Note:*** We use data from <https://www.meteoblue.com>
+
+
+
+
+
+# Handling `.csv` files with header column names
 
 Data can be stored and loaded in pretty much any kind of structure using Python, from comma separated values, json, binary files, databases or compressed files.
 
@@ -379,7 +505,6 @@ Here we will use it to simply store and load `.csv` files for us, since the `Num
 
 
 
-***Note:*** We use data from <https://www.meteoblue.com>
 
 ## Loading data from `.csv` into `NumPy` structure
 

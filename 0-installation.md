@@ -31,6 +31,8 @@ Please download and install the full **Python 2.7** package in https://www.conti
 
 ***Note:*** Do install the full Anaconda that contains all the relevant packages for this workshop
 
+Also download the `lisbon_temperature.csv` file from (here)[data/lisbon_temperature.csv].
+
 
 Other Python packages
 ---
