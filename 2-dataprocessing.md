@@ -144,6 +144,7 @@ kg
 >>> b
 array([ 0,  1,  4,  9, 16, 25])
 ```
+--- 
 
 # Introduction to `NumPy`
 
@@ -327,7 +328,7 @@ More linear algebra using python can be checked at <https://docs.scipy.org/doc/n
 >>> 
 ```
 
-
+--- 
 # Handling simple `.csv` files using NumPy
 
 Data can be stored and loaded in pretty much any kind of structure using Python, from comma separated values, json, binary files, databases or compressed files.
@@ -371,8 +372,27 @@ print data[0]
 print data[:,0]
 ```
 
+---
 
-## Analysing the data
+# Analysing the data
+
+First of all we need to add information about the days and the hours.
+We only have temperature data and we know that hourly temperature is distributed along the columns and that days starting from July 11th correspond to each row.
+We can create day and hour auxiliary vectors to extract this information.
+
+> ***Question:*** How can we make these auxiliary hour and days vectors?  We know hours go from 0 to 23 and the days are from 11 to 25. Should we use `floats`, `int`?
+
+
+```python
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+    print hour
+    print days
+```
 
 > ***Question:*** How is the maximum temperature achieved in these two weeks? What about the minimum and average temperatures?
 
@@ -382,7 +402,52 @@ print np.max(data)
 print np.min(data)
 ```
 
+
+> ***Question:*** How can we print each daily temperature array individually?
+
+By iterating over the data:
+
+```python
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+
+    for temperature in data:
+        print temperature
+```
+
+> ***Question:*** What if we want to print a message with the day of the month and the respective maximum and minimum temperatures?
+
+We can use the `enumerate` python method or the `zip`.
+As we have seen before, `enumerate` returns a tuple with the index and respective value.
+The `zip` method joins two arrays elementwise. This means the first element of `a` is returned with the first element of `b`, second of `a` with second of `b` and so on.
+
+We can calculate the maximum, minimum and average values of an array using the standard `numpy` functions: `max`, `min`, `mean`.
+
+```python
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+
+    for i, temperature in enumerate(data):
+        print 'Temperature varied between %.0f C and %.0f C on July %d 2017'%(np.min(temperature), np.max(temperature), days[i])
+
+    for day, temperature in zip(days,data):
+        print 'Temperature varied between %.0f C and %.0f C on July %d 2017'%(np.min(temperature), np.max(temperature), day)
+```
+
+
 > ***Question:*** How can we calculate the average daily temperature? What about the maximum and minimum temperatures in each day?
+
+The `numpy` functions `max`, `min`, `mean` have a parameter that allow them to operate over individual columns or rows inside the 2D array.
+
+We can demonstrate this with:
 
 ```python
 # Hourly temperatures (Column based)
@@ -397,6 +462,92 @@ print np.min(data, axis=1)
 ```
 
 
+## Verify if temperature went above a threshold in a day
+
+Let's make some interpretation of the data that we received.
+
+> ***Question:*** What if we want to know if the temperature went above 30 in each day?
+
+We can create a function that receives the daily temperature array and returns `True` if the temperature went above 30 and `False` otherwise.
+
+We can hardcode the 30 threshold in the comparison, but can also pass it as an argument with a default value.
+
+```python
+def verify_threshold(temperature, threshold=30):
+    for temp in temperature:
+        if temp >= threshold:
+            return True
+    return False
+```
+
+We can also do this in a more pythonic way by using `numpy.all` or `numpy.any` arguments. These are similar to `and` and `or` but operate over a whole array of boolean values.
+
+We want to see if `any` temperature value went above the threshold. 
+We can do this simply:
+```python
+def verify_threshold(temperature, threshold=30):
+    return np.any(temperature >= threshold)
+```
+
+
+
+> ***Question:*** How can we make a script that prints a message saying that day was *very hot* or *okay* depending on its temperature?
+
+We can iterate over all daily data, see if it went above a threshold, and print the respective message.
+
+```python
+import numpy as np
+
+def verify_threshold(temperature, threshold=30):
+    return np.any(temperature >= threshold)
+
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+    
+    for day, temperature in zip(days,data):
+        if verify_threshold(temperature):
+            print 'July %d was very hot'%(day)
+        else:
+            print 'July %d was okay'%(day)
+```
+
+
+> ***Question:*** What if we want to modify the threshold to 32 degrees?
+
+```python
+    for day, temperature in zip(days,data):
+        if verify_threshold(temperature, threshold=32):
+            print 'July %d was very hot'%(day)
+        else:
+            print 'July %d was okay'%(day)
+```
+
+
+
+## Converting Celsius temperature Fahrenheit or Kelvin
+
+What if we want to convert the temperature in celsius to other temperature units such as Fahrenheit or Kelvin?
+
+We know that we can convert Celsius to Fahrenheit by multiplying by 1.8 and adding 32.
+
+```python
+def celsius2fahrenheit(celsius):
+    return celsius*1.8 + 32
+
+farh = celsius2fahrenheit(data)
+```
+
+Or converting to kelvin, which is adding 273.15
+```python
+def celsius2kelvin(celsius):
+    return celsius + 273.15
+
+kelvin = celsius2kelvin(data)
+```
+---
 
 # Visualizing data with `matplotlib`
 
@@ -772,66 +923,10 @@ We can also set the output dpi.
     fig.savefig('lisbon_temperature.png', dpi=300)
 ```
 
----
 
 ---
 
-# Handling `.csv` files with header column names
+# Processing data
 
-Data can be stored and loaded in pretty much any kind of structure using Python, from comma separated values, json, binary files, databases or compressed files.
-
-Here we will introduce how to store and load data in the common comma separated value `.csv` format.
-
-`.csv` files have usually a header, determining what is in each of the columns, and each row corresponds to a new data line.
-
-An example:
-```
-a,b
-0.953274884328,0.908733005091
--0.438914494799,0.192645933745
-1.67484667805,2.80511139497
-
-```
-
-
-To handle `csv` data we use an additional python library, `pandas`.
-`pandas` is a great library to handle different data structures and one of the most used python tools in data sciences.
-Here we will use it to simply store and load `.csv` files for us, since the `NumPy` library is not as complete.
-
-## Loading data from `.csv` into `NumPy` structure
-
-Assuming that the first line of the `.csv` file includes the names of the respective columns, we can use the numpy library directly.
-
-```python
-import numpy as np
-
-filename='data.csv'
-data = np.genfromtxt(filename, delimiter=',', names=True)
-t = data['t']
-sig1 = data['sig1']
-```
-
-Or we can use the pandas library together with numpy.
-
-```python
-import pandas as pd
-import numpy as np
-
-filename = 'data.csv'
-data = pd.read_csv(filename)
-t = data['t']
-sig1 = data['sig1']
-```
-
-
-
-```python
-def function()
-
-```
-```python
-data = np.genfromtxt(path_to_csv, dtype=None, delimiter=',', names=True)
-
-
-
-```
+--- 
+# Summary
