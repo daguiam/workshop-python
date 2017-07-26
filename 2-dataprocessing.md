@@ -585,6 +585,8 @@ import numpy as np
 if __name__ == "__main__":
     filename = 'lisbon_temperature.csv'
     data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
     plt.plot(data)
     plt.show()
 ```
@@ -594,26 +596,6 @@ if __name__ == "__main__":
 
 > ***Question:*** How to plot all the days correctly overlapping?
 
-
-
-
-```python
-import matplotlib.pyplot as plt
-import numpy as np
-if __name__ == "__main__":
-    filename = 'lisbon_temperature.csv'
-    data = np.genfromtxt(filename, delimiter=',')
-    for day_data in data:
-        plt.plot(day_data)
-    plt.show()
-```
-
-We only have temperature data and we know that hourly temperature is distributed along the columns and that days starting at 11 correspond to each row.
-We can create day and hour auxiliary vectors to compensate for this.
-
-> ***Question:*** How can we make these auxiliary hour and days vectors?  We know hours go from 0 to 23 and the days are from 11 to 25. Should we use `floats`, `int`?
-
-
 ```python
 import matplotlib.pyplot as plt
 import numpy as np
@@ -622,8 +604,6 @@ if __name__ == "__main__":
     data = np.genfromtxt(filename, delimiter=',')
     hour = np.arange(0, 24, 1)
     days = np.arange(11,26)
-    print hour
-    print days
     for day_temp in data:
         plt.plot(hour, day_temp)
     plt.show()
@@ -648,6 +628,7 @@ if __name__ == "__main__":
     hour = np.arange(0, 24, 1)
     days = np.arange(11,26)
 
+    # We calculate values along the columns with axis=0
     temp_mean = np.mean(data, axis=0)
     temp_max = np.max(data, axis=0)
     temp_min = np.min(data, axis=0)
@@ -725,10 +706,9 @@ And add markers
 
 
 
-> ***Question:*** What happens if you resize the plot of each one?
 
 
-## 2D plotting
+# Plotting 2D data
 
 We can also plot this data in a 2D plot. For this we also use the internal `matplotlib` functions `pcolormesh` or `imshow`.
 
@@ -747,6 +727,7 @@ if __name__ == "__main__":
     plt.pcolormesh(data)
     plt.show()
 ```
+> ***Question:*** What happens if you resize the plot of each one?
 
 2D data is actually 3 dimensional data while the third dimension is represented by the color of the 2D plot. In order to get a scale of the color we require a `colorbar` to be plotted alongside our mesh. We remove the unused `imshow` and add the `colorbar`
 
@@ -763,7 +744,10 @@ if __name__ == "__main__":
     plt.show()
 ```
 
-## Using subplots
+
+
+
+# Using subplots
 
 Subplots are a great tool when you want to compare different data in the same figure. Here we will use both the average daily and hourly temperatures as well as the 2D plot to represent our data and gain some interesting insight.
 
@@ -911,7 +895,7 @@ if __name__ == "__main__":
     plt.show()
 ```
 
-## Saving figures
+# Saving figures
 
 `matplotlib` also allows saving figures to most output file formats. We can save the figure directly from our figure window.
 However for reproducible images, we should embed the figure saving into our script.
@@ -926,7 +910,8 @@ We can also set the output dpi.
 
 ---
 
-# Processing data
-
---- 
 # Summary
+
+In this chapter we introduced ways to import existing libraries into our scripts.
+We used `NumPy`, one of the most popular data processing libraries, for loading `.csv` data and make some simple processing.
+We also used `matplotlib` as the visualization tool to plot our data and save the respective figures.
