@@ -375,10 +375,34 @@ print data[0]
 print data[:,0]
 ```
 
+
+## Analysing the data
+
+> ***Question:*** How is the maximum temperature achieved in these two weeks? What about the minimum and average temperatures?
+
+```python
+print np.mean(data)
+print np.max(data)
+print np.min(data)
+```
+
+> ***Question:*** How can we calculate the average daily temperature? What about the maximum and minimum temperatures in each day?
+
+```python
+# Hourly temperatures (Column based)
+print np.mean(data, axis=0)
+print np.max(data, axis=0)
+print np.min(data, axis=0)
+
+# Daily temperatures (Row based)
+print np.mean(data, axis=1)
+print np.max(data, axis=1)
+print np.min(data, axis=1)
+```
+
+
+
 # Visualizing data with `matplotlib`
-
-
-
 
 All the data seems to be there. But it is hard to make sense of just numbers. It is much easier if we can visualize all the data that we just loaded.
 Python has the `matplotlib` package for plotting any kinds of data using a range of different backends.
@@ -398,13 +422,13 @@ plt.show()
 A window should open up after `plt.show()` with the plotted `x,y` data.
 You can use this window to zoom in on the plotted data, make some small adjustments and save the figures.
 
-> ***Note:*** I suggest using these tools to verify some data, but any details in publication figures should be explicit in the respective python script!
+> ***Note:*** I suggest using these tools to verify some data, but any details in publication figures should be explicit in the respective python script or notebook!
 
 
 We can also decorate our `matplotlib` plots in any way we want, using data labels, legends, colors, etc.
 
 
-
+## Visualizing `.csv` data
 
 All the data seems to be there. But it is hard to make sense of just numbers. It is much easier if we can visualize all the data that we just loaded. For this we plot the data in our script.
 
@@ -430,12 +454,14 @@ if __name__ == "__main__":
     filename = 'lisbon_temperature.csv'
     data = np.genfromtxt(filename, delimiter=',')
     for day_data in data:
-      plt.plot(day_data)
+        plt.plot(day_data)
     plt.show()
 ```
 
-Now let's work with a single day data.
+We only have temperature data and we know that hourly temperature is distributed along the columns and that days starting at 11 correspond to each row.
+We can create day and hour auxiliary vectors to compensate for this.
 
+> ***Question:*** How can we make these auxiliary hour and days vectors?  We know hours go from 0 to 23 and the days are from 11 to 25. Should we use `floats`, `int`?
 
 
 ```python
@@ -444,10 +470,69 @@ import numpy as np
 if __name__ == "__main__":
     filename = 'lisbon_temperature.csv'
     data = np.genfromtxt(filename, delimiter=',')
-    for day_data in data:
-      plt.plot(day_data)
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+    print hour
+    print days
+    for day_temp in data:
+        plt.plot(hour, day_temp)
     plt.show()
 ```
+
+### Decorating with axis labels 
+Now we can decorate our figure by adding x and y labels and a title.
+```python
+    plt.title('Lisbon temperature')
+    plt.xlabel('Time of day')
+    plt.ylabel('Temperature [C]')
+```
+
+### Processing the data to get the average, maximum and minimum temperatures
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+
+    temp_mean = np.mean(data, axis=0)
+    temp_max = np.max(data, axis=0)
+    temp_min = np.min(data, axis=0)
+    
+    plt.plot(hour, temp_mean)
+    plt.plot(hour, temp_max)
+    plt.plot(hour, temp_min)
+    plt.show()
+```
+
+### Adding legends to each plot 
+And add legends to individual plots. This is a great feature and one of my favorites coming from matlab.
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    data = np.genfromtxt(filename, delimiter=',')
+    hour = np.arange(0, 24, 1)
+    days = np.arange(11,26)
+
+    temp_mean = np.mean(data, axis=0)
+    temp_max = np.max(data, axis=0)
+    temp_min = np.min(data, axis=0)
+    
+    plt.plot(hour, temp_mean, label='Average')
+    plt.plot(hour, temp_max, label='Maximum')
+    plt.plot(hour, temp_min, label='Minimum')
+
+    plt.legend()
+    plt.show()
+```
+
+
 
 ## 2D plotting
 
@@ -471,11 +556,38 @@ if __name__ == "__main__":
 > ***Question:*** What happens if you resize the plot of each one?
 
 
+## Using subplots
+
+Subplots are a great tool when you want to compare different data.
+Here we will compare the temperature of or three consecutive days in Lisbon.
 
 
 
 
-***Note:*** We use data from <https://www.meteoblue.com>
+
+
+
+
+Comparing wind and temperature data. First we load the data
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+if __name__ == "__main__":
+    filename = 'lisbon_temperature.csv'
+    tempdata = np.genfromtxt(filename, delimiter=',')
+    filename = 'lisbon_wind.csv'
+    winddata = np.genfromtxt(filename, delimiter=',')
+    f, axarray = plt.subplots(2, 1, sharex=True)
+    ax = axarray[0]
+    ax.plot(tempdata.T)
+    ax = axarray[1]
+    ax.plot(winddata.T)
+
+    plt.show()
+```
+
+
 
 
 

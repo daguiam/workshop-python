@@ -340,6 +340,8 @@ However, for real data processing it is better to use a more robust library such
 
 For floats we have to use another library (numpy.linspace)
 
+
+
 ### Tuples
 
 Tuples are defined in python with normal parenthesis `()`.
@@ -637,6 +639,44 @@ Iteration 4
 break
 >>> 
 ```
+
+
+### Iterating over lists
+
+We can also use the `for` control flow to iterate over a list.
+Take the example of the list of weekdays and we want to print each day individually.
+
+```python
+>>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+>>> for day in weekdays:
+...     print day    
+... 
+Monday
+Tuesday
+Wednesday
+Thursday
+Friday
+Saturday
+Sunday 
+```
+
+We can also `enumerate` the list so that we get the value and the index position in the list. We can also concatenate this into a string as before.
+
+```python
+>>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+>>> for i, day in enumerate(weekdays):
+...     print 'Week day %d is %s'%(i+1, day)    
+... 
+Week day 1 is Monday
+Week day 2 is Tuesday
+Week day 3 is Wednesday
+Week day 4 is Thursday
+Week day 5 is Friday
+Week day 6 is Saturday
+Week day 7 is Sunday 
+```
+
+
 
 ## Nested code blocks
 
